@@ -1,0 +1,71 @@
+//-----------------------------------------------------------------------------
+//	MONOSCRIPT.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Macro SRCDIR		".."
+$Macro OUTBINDIR	"$SRCDIR\..\game\mod_hl2mp\bin"
+
+$Include "$SRCDIR\vpc_scripts\source_dll_base.vpc"
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE"
+		$PreprocessorDefinitions			"$BASE;MONOSCRIPT_DLL_EXPORT"
+	}
+
+	$Linker
+	{
+		$AdditionalDependencies				"$BASE odbc32.lib odbccp32.lib"
+	}
+}
+
+$Project "monoscript"
+{
+	$Folder	"Source Files"
+	{
+		$File	"monoscript.cpp"
+	}
+
+	$Folder	"Header Files"
+	{
+		$File	"monoscript.h"
+		$File	"$SRCDIR\public\monoscript\imonoscript.h"
+	}
+
+	$Folder	"Public Header Files"
+	{
+		$File	"$SRCDIR\public\tier0\basetypes.h"
+		$File	"$SRCDIR\public\Color.h"
+		$File	"$SRCDIR\public\tier0\dbg.h"
+		$File	"$SRCDIR\public\eiface.h"
+		$File	"$SRCDIR\public\filesystem.h"
+		$File	"$SRCDIR\public\tier0\icommandline.h"
+		$File	"$SRCDIR\public\igameevents.h"
+		$File	"$SRCDIR\public\tier1\interface.h"
+		$File	"$SRCDIR\public\game\server\iplayerinfo.h"
+		$File	"$SRCDIR\public\engine\iserverplugin.h"
+		$File	"$SRCDIR\public\tier1\KeyValues.h"
+		$File	"$SRCDIR\public\tier0\mem.h"
+		$File	"$SRCDIR\public\tier0\memalloc.h"
+		$File	"$SRCDIR\public\tier0\memdbgon.h"
+		$File	"$SRCDIR\public\tier1\strtools.h"
+		$File	"$SRCDIR\public\tier1\utlbuffer.h"
+		$File	"$SRCDIR\public\tier1\utlmemory.h"
+		$File	"$SRCDIR\public\tier1\utlvector.h"
+		$File	"$SRCDIR\public\vstdlib\vstdlib.h"
+	}
+
+	$Folder	"Link Libraries"
+	{
+		$DynamicFile	"$SRCDIR\lib\public\mathlib.lib" [$WIN32]
+		$DynamicFile	"$SRCDIR\lib\public\tier2.lib" [$WIN32]
+		$DynamicFile	"$SRCDIR\lib\public\$PLATFORM\mathlib$_STATICLIB_EXT" [$LINUX]
+		$DynamicFile	"$SRCDIR\lib\public\$PLATFORM\tier2$_STATICLIB_EXT" [$LINUX]
+		$DynamicFile	"$SRCDIR\lib\$PLATFORM\mathlib$_STATICLIB_EXT" [$OSXALL]
+		$DynamicFile	"$SRCDIR\lib\$PLATFORM\tier2$_STATICLIB_EXT" [$OSXALL]
+	}
+}
