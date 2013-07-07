@@ -62,8 +62,8 @@ voice_ban.dt
 modelsounds.cache
 sound.cache
 server_blacklist.txt
-maps/graphs/*
-screenshots/*
+**/maps/graphs/*
+**/screenshots/*
 
 # protobufs
 generated_proto/

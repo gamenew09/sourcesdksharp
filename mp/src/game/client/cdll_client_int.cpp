@@ -172,6 +172,8 @@ const char *COM_GetModDirectory(); // return the mod dir (rather than the comple
 #include "monoscript/imonoscript.h"
 #endif
 
+#include "ScreenCapture.h"
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -2243,6 +2245,8 @@ void OnRenderEnd()
 	UpdatePVSNotifiers();
 
 	DisplayBoneSetupEnts();
+
+	TakePNGScreenshot();
 }
 
 

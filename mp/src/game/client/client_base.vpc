@@ -499,6 +499,8 @@ $Project
 		//Haptics
 		$File	"$SRCDIR\public\haptics\haptic_msgs.cpp"	[!$X360]
 		$File	"$SRCDIR\public\haptics\haptic_utils.cpp"	[$WIN32&&!$X360]
+		//PNG Screenshots
+		$File	"ScreenCapture.cpp"
 
 		$Folder	"Sixense"
 		{
@@ -870,6 +872,8 @@ $Project
 		$File	"weapons_resource.h"
 		$File	"vgui_video.h"
 		$File   "vgui_video_player.h"
+		// PNG Screenshots
+		$File	"ScreenCapture.h"
 	}
 
 	$Folder	"Public Header Files"
@@ -1097,6 +1101,8 @@ $Project
 		//Haptics
 		$File   "$SRCDIR\public\haptics\ihaptics.h"	[$WIN32]
 		$File   "$SRCDIR\public\haptics\haptic_utils.h"	[$WIN32]
+		// PNG Screenshots
+		$File	"$SRCDIR\public\miniz.h"
 	}
 
 	$Folder	"Game Shared Header Files"
