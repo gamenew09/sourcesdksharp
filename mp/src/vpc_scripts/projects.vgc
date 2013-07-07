@@ -116,5 +116,5 @@ $Project "vvis_launcher"
 
 $Project "monoscript"
 {
-	"monoscript\monoscript.vpc" [$WINDOWS||$POSIX]
+	"monoscript\monoscript.vpc" [($WINDOWS||$POSIX) && $MONO]
 }

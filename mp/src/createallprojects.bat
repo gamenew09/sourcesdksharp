@@ -1,1 +1,1 @@
-devtools\bin\vpc.exe /hl2mp +everything /mksln everything.sln
+devtools\bin\vpc.exe /define:MONO /hl2mp +everything /mksln everything.sln

@@ -126,6 +126,10 @@ extern ConVar tf_mm_servermode;
 #include "replay/ireplaysystem.h"
 #endif
 
+#ifdef MONO_ENABLED
+#include "monoscript/imonoscript.h"
+#endif
+
 extern IToolFrameworkServer *g_pToolFrameworkServer;
 extern IParticleSystemQuery *g_pParticleSystemQuery;
 
@@ -182,6 +186,11 @@ IMatchmaking *matchmaking = NULL;	// Xbox 360 only
 #if defined( REPLAY_ENABLED )
 IReplaySystem *g_pReplay = NULL;
 IServerReplayContext *g_pReplayServerContext = NULL;
+#endif
+
+#ifdef MONO_ENABLED
+IMonoScript *monoscript = NULL;
+CSysModule **monoscriptModule = NULL;
 #endif
 
 IGameSystem *SoundEmitterSystem();
@@ -629,6 +638,14 @@ bool CServerGameDLL::DLLInit( CreateInterfaceFn appSystemFactory,
 		serverenginetools = ( IServerEngineTools * )appSystemFactory( VSERVERENGINETOOLS_INTERFACE_VERSION, NULL );
 #endif
 	}
+
+#ifdef MONO_ENABLED
+	char monoscriptpath[256];
+	filesystem->RelativePathToFullPath( "bin/monoscript"DLL_EXT_STRING, "MOD", monoscriptpath, sizeof(monoscriptpath) );
+	Sys_LoadInterface( monoscriptpath, MONOSCRIPT_INTERFACE_VERSION, monoscriptModule, (void**)&monoscript );
+	monoscript->Initialize();
+	monoscript->SendMessage( SCRIPTDOMAIN_SERVER, SCRIPTMSGID_INVALID, NULL, 0 );
+#endif
 
 	// Yes, both the client and game .dlls will try to Connect, the soundemittersystem.dll will handle this gracefully
 	if ( !soundemitterbase->Connect( appSystemFactory ) )

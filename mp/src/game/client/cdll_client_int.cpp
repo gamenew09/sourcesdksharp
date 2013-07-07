@@ -168,7 +168,9 @@ const char *COM_GetModDirectory(); // return the mod dir (rather than the comple
 #include "sixense/in_sixense.h"
 #endif
 
+#ifdef MONO_ENABLED
 #include "monoscript/imonoscript.h"
+#endif
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -218,8 +220,10 @@ IReplaySystem *g_pReplay = NULL;
 
 IHaptics* haptics = NULL;// NVNT haptics system interface singleton
 
+#ifdef MONO_ENABLED
 IMonoScript *monoscript = NULL;
 CSysModule **monoscriptModule = NULL;
+#endif
 
 //=============================================================================
 // HPE_BEGIN
@@ -946,6 +950,14 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	InitFbx();
 #endif
 
+#ifdef MONO_ENABLED
+	char monoscriptpath[256];
+	filesystem->RelativePathToFullPath( "bin/monoscript"DLL_EXT_STRING, "MOD", monoscriptpath, sizeof(monoscriptpath) );
+	Sys_LoadInterface( monoscriptpath, MONOSCRIPT_INTERFACE_VERSION, monoscriptModule, (void**)&monoscript );
+	monoscript->Initialize();
+	monoscript->SendMessage( SCRIPTDOMAIN_CLIENT, SCRIPTMSGID_INVALID, NULL, 0 );
+#endif
+
 	// it's ok if this is NULL. That just means the headtrack.dll wasn't found
 	g_pSourceVR = (ISourceVirtualReality *)appSystemFactory(SOURCE_VIRTUAL_REALITY_INTERFACE_VERSION, NULL);
 
@@ -979,12 +991,6 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	ConVar_Register( FCVAR_CLIENTDLL );
 
 	g_pcv_ThreadMode = g_pCVar->FindVar( "host_thread_mode" );
-
-	char monoscriptpath[256];
-	filesystem->RelativePathToFullPath( "bin/monoscript"DLL_EXT_STRING, "MOD", monoscriptpath, sizeof(monoscriptpath) );
-	Sys_LoadInterface( monoscriptpath, MONOSCRIPT_INTERFACE_VERSION, monoscriptModule, (void**)&monoscript );
-	monoscript->Initialize();
-	monoscript->SendMessage( SCRIPTDOMAIN_CLIENT, SCRIPTMSGID_INVALID, NULL, 0 );
 
 	// If we are in VR mode do some initial setup work
 	if( UseVR() )

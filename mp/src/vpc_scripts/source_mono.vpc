@@ -1,0 +1,7 @@
+$Configuration
+{
+	$Compiler
+	{
+		$PreprocessorDefinitions	"$BASE;MONO_ENABLED"
+	}
+}
