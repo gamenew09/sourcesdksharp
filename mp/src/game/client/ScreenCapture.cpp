@@ -71,7 +71,7 @@ void TakeScreenshotPNG( const char *pFilename, int compression )
 	// Get Bits from the material system
 	ReadScreenPixels( 0, 0, screenWidth, screenHeight, pImage, IMAGE_FORMAT_RGB888 );
 
-	compression = clamp( compression, 0, 9 );
+	compression = clamp( compression, 0, 10 );
 	
 	int finalSize = 0;
 	//we use miniz, seems libpng is actually slower once miniz has taken one
@@ -182,7 +182,7 @@ void TakePNGScreenshot()
 	}
 }
 
-CON_COMMAND_F( png, "Take a png screenshot:  png <filename> <compression 0-9>.", FCVAR_CLIENTCMD_CAN_EXECUTE )
+CON_COMMAND_F( png, "Take a png screenshot:  png <filename> <compression 0-10>.", FCVAR_CLIENTCMD_CAN_EXECUTE )
 {
 	if( args.ArgC() >= 2 )
 	{
