@@ -20,9 +20,8 @@
 class CMonoScript : public IMonoScript
 {
 public:
-	CMonoScript();
-
-	void	SendMessage(int id, void* buffer, int length);
+	void	Initialize();
+	void	SendMessage( EMonoScriptDomain target, EMonoScriptMsgID msgid, void* buffer, int length );
 };
 
 EXPOSE_SINGLE_INTERFACE( CMonoScript, IMonoScript, MONOSCRIPT_INTERFACE_VERSION );

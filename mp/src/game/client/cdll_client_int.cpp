@@ -168,6 +168,8 @@ const char *COM_GetModDirectory(); // return the mod dir (rather than the comple
 #include "sixense/in_sixense.h"
 #endif
 
+#include "monoscript/imonoscript.h"
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -215,6 +217,9 @@ IReplaySystem *g_pReplay = NULL;
 #endif
 
 IHaptics* haptics = NULL;// NVNT haptics system interface singleton
+
+IMonoScript *monoscript = NULL;
+CSysModule **monoscriptModule = NULL;
 
 //=============================================================================
 // HPE_BEGIN
@@ -974,6 +979,12 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	ConVar_Register( FCVAR_CLIENTDLL );
 
 	g_pcv_ThreadMode = g_pCVar->FindVar( "host_thread_mode" );
+
+	char monoscriptpath[256];
+	filesystem->RelativePathToFullPath( "bin/monoscript"DLL_EXT_STRING, "MOD", monoscriptpath, sizeof(monoscriptpath) );
+	Sys_LoadInterface( monoscriptpath, MONOSCRIPT_INTERFACE_VERSION, monoscriptModule, (void**)&monoscript );
+	monoscript->Initialize();
+	monoscript->SendMessage( SCRIPTDOMAIN_CLIENT, SCRIPTMSGID_INVALID, NULL, 0 );
 
 	// If we are in VR mode do some initial setup work
 	if( UseVR() )

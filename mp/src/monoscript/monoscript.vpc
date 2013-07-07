@@ -13,8 +13,12 @@ $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories		"$BASE"
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\thirdparty\mono"
 		$PreprocessorDefinitions			"$BASE;MONOSCRIPT_DLL_EXPORT"
+		$AdditionalOptions  "$BASE /wd4510 /wd4610"
+		// Ignore W4510 and W4610 due to it being a Mono header warning
+		// warning C4510: '<unnamed-tag>' : default constructor could not be generated
+		// warning C4610: struct '<unnamed-tag>' can never be instantiated - user defined constructor required
 	}
 
 	$Linker
@@ -39,16 +43,19 @@ $Project "monoscript"
 	{
 		$File	"$SRCDIR\public\monoscript\imonoscript.h"
 		$File	"$SRCDIR\public\tier0\dbg.h"
+		$File	"$SRCDIR\public\tier0\memdbgon.h"
 		$File	"$SRCDIR\public\tier1\interface.h"
 	}
 
 	$Folder	"Link Libraries"
 	{
-		$DynamicFile	"$SRCDIR\lib\public\mathlib.lib" [$WIN32]
-		$DynamicFile	"$SRCDIR\lib\public\tier2.lib" [$WIN32]
+		$DynamicFile	"$SRCDIR\lib\public\mathlib.lib"                      [$WIN32]
+		$DynamicFile	"$SRCDIR\lib\public\tier2.lib"                        [$WIN32]
 		$DynamicFile	"$SRCDIR\lib\public\$PLATFORM\mathlib$_STATICLIB_EXT" [$LINUX]
-		$DynamicFile	"$SRCDIR\lib\public\$PLATFORM\tier2$_STATICLIB_EXT" [$LINUX]
-		$DynamicFile	"$SRCDIR\lib\$PLATFORM\mathlib$_STATICLIB_EXT" [$OSXALL]
-		$DynamicFile	"$SRCDIR\lib\$PLATFORM\tier2$_STATICLIB_EXT" [$OSXALL]
+		$DynamicFile	"$SRCDIR\lib\public\$PLATFORM\tier2$_STATICLIB_EXT"   [$LINUX]
+		$DynamicFile	"$SRCDIR\lib\$PLATFORM\mathlib$_STATICLIB_EXT"        [$OSXALL]
+		$DynamicFile	"$SRCDIR\lib\$PLATFORM\tier2$_STATICLIB_EXT"          [$OSXALL]
+		$File "$SRCDIR\lib\$PLATFORM\mono.lib"                                [$WINDOWS]
+		$File "$SRCDIR\lib\$PLATFORM\libmono-2.0.a"                           [$POSIX]
 	}
 }
