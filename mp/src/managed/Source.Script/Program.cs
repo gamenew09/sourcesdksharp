@@ -18,7 +18,7 @@ namespace Source.Script
 
         static void Main(string[] args)
         {
-			Debug.Msg("[Source.exe] Loading shared Mono\n");
+			Debug.Msg("[Source.Script.exe] Loading shared Mono\n");
 			NativeFunctions.SetMonoMessageFn(MonoMessageHandler);
         }
 
@@ -28,7 +28,7 @@ namespace Source.Script
 			if(length != 0)
 				Marshal.Copy(buffer, data, 0, length);
 
-            Debug.Msg("[Source.exe] Recieved Mono message, target: {0}, id: {1}, length: {2}\n", target, msgid, length);
+			Debug.Msg("[Source.Script.exe] Recieved Mono message, target: {0}, id: {1}, length: {2}\n", target, msgid, length);
         }
     }
 }
