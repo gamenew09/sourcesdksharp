@@ -34,6 +34,12 @@ $Project "monoscript"
 		$File	"monoscript.cpp"
 	}
 
+	$Folder	"Shared Bindings"
+	{
+		$File	"public\mono_color.cpp"
+		$File	"public\tier0\mono_dbg.cpp"
+	}
+
 	$Folder	"Header Files"
 	{
 		$File	"monoscript.h"
@@ -41,6 +47,7 @@ $Project "monoscript"
 
 	$Folder	"Public Header Files"
 	{
+		$File	"$SRCDIR\public\Color.h"
 		$File	"$SRCDIR\public\monoscript\imonoscript.h"
 		$File	"$SRCDIR\public\tier0\dbg.h"
 		$File	"$SRCDIR\public\tier0\memdbgon.h"

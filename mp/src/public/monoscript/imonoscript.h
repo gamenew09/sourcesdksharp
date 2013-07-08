@@ -15,6 +15,13 @@
 
 #include "tier1/interface.h"
 
+#ifdef MONOSCRIPT_DLL_EXPORT
+// Interfaces that are provided in the monoscript dll should be here if they are normally avaliable in game
+// This allows us to share code between monoscript and game, we also need the names the same
+#include "filesystem.h"
+extern IFileSystem *filesystem;
+#endif
+
 #define TOKENPASTE(x, y) x ## y
 #define TOKENPASTE2(x, y) TOKENPASTE(x, y)
 #define MONOFUNC(x) TOKENPASTE2(DLLNAME,_##x)

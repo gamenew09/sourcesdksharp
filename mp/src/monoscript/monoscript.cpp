@@ -6,15 +6,15 @@
 //
 //===========================================================================//
 
+#include "tier0/icommandline.h"
+#include "filesystem.h"
+
 #include "monoscript.h"
 
 #include <mono/mini/jit.h>
 #include <mono/metadata/assembly.h>
 #include <mono/metadata/mono-config.h>
 #include <mono/metadata/mono-debug.h>
-
-#include "filesystem.h"
-#include "tier0/icommandline.h"
 
 // Mono debugging hacks
 #ifdef _WIN32
@@ -30,7 +30,7 @@
 typedef void (__stdcall *MonoMessageFn)( EMonoScriptDomain target, EMonoScriptMsgID msgid, void *msg, int length );
 MonoMessageFn g_pMonoMessageFn = NULL;
 
-IFileSystem *g_pFileSystem;
+IFileSystem *filesystem;
 CSysModule **g_pFileSystemModule;
 
 MonoDomain *g_pMonoDomain;
@@ -49,21 +49,21 @@ void CMonoScript::Initialize()
 		if( bDebug )
 			Msg( "[CMonoScript] Enabling Mono debugging\n" );
 		// Get the filesystem interface to find where our files are
-		Sys_LoadInterface( "filesystem_stdio.dll", FILESYSTEM_INTERFACE_VERSION, g_pFileSystemModule, (void **)&g_pFileSystem );
+		Sys_LoadInterface( "filesystem_stdio.dll", FILESYSTEM_INTERFACE_VERSION, g_pFileSystemModule, (void **)&filesystem );
 
 		DevMsg( "[CMonoScript] Initializing Mono VM\n" );
 
 		// Get the directories we need
 		char libpath[256];
-		g_pFileSystem->RelativePathToFullPath( "mono/lib", "GAMEBIN", libpath, sizeof(libpath) );
+		filesystem->RelativePathToFullPath( "mono/lib", "GAMEBIN", libpath, sizeof(libpath) );
 		char etcpath[256];
-		g_pFileSystem->RelativePathToFullPath( "mono/etc", "GAMEBIN", etcpath, sizeof(etcpath) );
+		filesystem->RelativePathToFullPath( "mono/etc", "GAMEBIN", etcpath, sizeof(etcpath) );
 		char bindir[256];
 		// Set our assembly path to the top level lib directory - we will change it for other app domains
-		g_pFileSystem->RelativePathToFullPath( "mono/lib/monoscript", "GAME", bindir, sizeof(bindir) );
+		filesystem->RelativePathToFullPath( "mono/lib/monoscript", "GAME", bindir, sizeof(bindir) );
 		char binpath[256];
 		Q_strcpy( binpath, bindir );
-		Q_strcat( binpath, "/Source.exe", 255 );
+		Q_strcat( binpath, "/Source.Script.exe", 255 );
 
 		// Set the mono paths
 		DevMsg( "[CMonoScript] lib: %s etc: %s bin: %s\n", libpath, etcpath, bindir );
@@ -101,7 +101,7 @@ void CMonoScript::Initialize()
 		}
 
 		// Run the assembly with the correct argv
-		char* argvv[1] = { "Source" };
+		char* argvv[1] = { "Source.Script" };
 		mono_jit_exec( g_pMonoDomain, g_pMonoAssembly, 1, argvv );
 
 		// The main assembly should give us our callback
@@ -127,14 +127,4 @@ DLL_EXPORT void MONOFUNC(set_mono_message_fn)( MonoMessageFn msgfn )
 {
 	DevMsg( "[CMonoScript] Setting Mono message function\n" );
 	g_pMonoMessageFn = msgfn;
-}
-
-DLL_EXPORT void MONOFUNC(msg)( const char *string )
-{
-	Msg( string );
-}
-
-DLL_EXPORT void MONOFUNC(devmsg)( const char *string )
-{
-	DevMsg( string );
 }
