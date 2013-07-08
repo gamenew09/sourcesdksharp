@@ -21,27 +21,27 @@ namespace Source
         ScriptMsgIDInitialize = 1,
     }
 
-    public delegate void MonoMessageDelegate( EMonoScriptDomain target, EMonoScriptMsgID msgid, IntPtr buffer, int length );
+    public delegate void MonoMessageDelegate(EMonoScriptDomain target, EMonoScriptMsgID msgid, IntPtr buffer, int length);
 
     static class BaseFunctions
     {
-        [DllImport("__Internal")]
-        private static extern void monoscript_msg(string str);
+        [DllImport("__Source")]
+        private static extern void msg(string str);
 
-        [DllImport("__Internal")]
-        private static extern void monoscript_devmsg(string str);
+		[DllImport("__Source")]
+        private static extern void devmsg(string str);
 
-        [DllImport("__Internal", EntryPoint = "monoscript_set_mono_message_fn")]
+		[DllImport("__Source", EntryPoint = "set_mono_message_fn")]
         public static extern void SetMonoMessageFn(MonoMessageDelegate del);
 
         public static void Msg(string format, params object[] args)
         {
-            monoscript_msg(String.Format(format, args));
+            msg(String.Format(format, args));
         }
 
         public static void DevMsg(string format, params object[] args)
         {
-            monoscript_devmsg(String.Format(format, args));
+            devmsg(String.Format(format, args));
         }
     }
 }

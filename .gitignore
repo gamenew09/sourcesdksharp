@@ -83,3 +83,9 @@ monoscript.dylib.dSYM/
 !**/managed/*.vcxproj
 !**/managed/*.vcxproj.filters
 !**/managed/*.sln
+
+**/managed/devtools/bin/
+
+# xamarin studio
+*.userprefs
+**/managed/packages/

@@ -44,6 +44,7 @@ $Project "monoscript"
 		$File	"$SRCDIR\public\monoscript\imonoscript.h"
 		$File	"$SRCDIR\public\tier0\dbg.h"
 		$File	"$SRCDIR\public\tier0\memdbgon.h"
+		$File	"$SRCDIR\public\tier0\icommandline.h"
 		$File	"$SRCDIR\public\tier1\interface.h"
 	}
 

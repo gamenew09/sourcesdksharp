@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Source", "Source\Source.csproj", "{7A03356A-EE19-4D5E-BBEC-F2D49351D918}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devtools", "devtools", "{9D13FB58-1C16-4265-96A2-DD4E9C5038FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buildtool", "devtools\buildtool\buildtool.csproj", "{9CBC7789-644A-49F0-9A38-BA7D0E8722AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,16 @@ Global
 		{7A03356A-EE19-4D5E-BBEC-F2D49351D918}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A03356A-EE19-4D5E-BBEC-F2D49351D918}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A03356A-EE19-4D5E-BBEC-F2D49351D918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CBC7789-644A-49F0-9A38-BA7D0E8722AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CBC7789-644A-49F0-9A38-BA7D0E8722AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CBC7789-644A-49F0-9A38-BA7D0E8722AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CBC7789-644A-49F0-9A38-BA7D0E8722AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9CBC7789-644A-49F0-9A38-BA7D0E8722AF} = {9D13FB58-1C16-4265-96A2-DD4E9C5038FC}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = devtools\buildtool\buildtool.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
