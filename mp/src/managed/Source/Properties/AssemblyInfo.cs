@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Ben")]
+[assembly: AssemblyProduct("Source Mono")]
+[assembly: AssemblyCopyright("Copyright ©  2013 Source Mono")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

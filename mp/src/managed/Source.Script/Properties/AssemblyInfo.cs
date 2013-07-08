@@ -9,8 +9,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Source.Script")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyProduct("Source Mono")]
+[assembly: AssemblyCopyright("Copyright ©  2013 Source Mono")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
