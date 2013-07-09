@@ -46,9 +46,12 @@
     <Compile Include="Public\Color.cs" />
     <Compile Include="Public\Tier0\Debug.cs" />
     <Compile Include="Public\FileSystem.cs" />
+    <Compile Include="Public\Mathlib\Vector.cs" />
+    <Compile Include="Public\Mathlib\Angle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Public\" />
+    <Folder Include="Public\Mathlib\" />
   </ItemGroup>
 </Project>

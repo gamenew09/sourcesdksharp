@@ -89,3 +89,6 @@ monoscript.dylib.dSYM/
 # xamarin studio
 *.userprefs
 **/managed/packages/
+
+# resharper
+_Resharper*/

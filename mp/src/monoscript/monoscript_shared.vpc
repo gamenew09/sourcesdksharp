@@ -11,6 +11,8 @@ $Project
 		$File	"$SRCDIR\monoscript\public\mono_color.cpp"
 		$File	"$SRCDIR\monoscript\public\mono_filesystem.cpp"
 		$File	"$SRCDIR\monoscript\public\tier0\mono_dbg.cpp"
+		$File	"$SRCDIR\monoscript\public\mathlib\mono_vector.cpp"
+		$File	"$SRCDIR\monoscript\public\mathlib\mono_qangle.cpp"
 	}
 
 	$Folder	"Public Header Files"
