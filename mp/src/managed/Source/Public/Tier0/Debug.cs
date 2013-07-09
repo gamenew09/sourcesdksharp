@@ -6,8 +6,8 @@ namespace Source.Public.Tier0
 	/// <summary>
 	/// Provides access to the Source engine's Tier0 logging functions.
 	/// </summary>
-    public static class Debug
-    {
+	public static class Debug
+	{
 		[DllImport("__Source")]
 		private static extern void dbg_msg(string fmt);
 
@@ -97,5 +97,5 @@ namespace Source.Public.Tier0
 			var print = String.Format(fmt, args);
 			dbg_colormsg(col.NativePtr, print);
 		}
-    }
+	}
 }
