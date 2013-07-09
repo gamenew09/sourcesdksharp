@@ -11,15 +11,15 @@ using Source.Public;
 
 namespace Source.Host
 {
-    class Program
-    {
-        // Global App Domains
+	class Program
+	{
+		// Global App Domains
 		static AppDomain[] domains;
 		static DomainInterface[] domainInterfaces;
 		// Map the domains to the respective lib dir
 		static readonly string[] domainLib = {"server", "client", "client"};
 
-        static void Main(string[] args)
+		static void Main(string[] args)
 		{
 			// Once this function returns, all native->managed will be handled through messages
 			NativeFunctions.SetMonoMessageFn(MonoMessageHandler);
@@ -28,13 +28,13 @@ namespace Source.Host
 			domainInterfaces = new DomainInterface[3];
 
 			Debug.Msg("[Source.Host.exe] Loading shared Mono\n");
-        }
+		}
 
-        static void MonoMessageHandler(EMonoScriptDomain target, EMonoScriptMsgID msgid, IntPtr buffer, int length)
-        {
-            byte[] data = new byte[length];
+		static void MonoMessageHandler(EMonoScriptDomain target, EMonoScriptMsgID msgid, IntPtr buffer, int length)
+		{
+			byte[] data = new byte[length];
 			if(length != 0)
-				Marshal.Copy(buffer, data, 0, length);
+			Marshal.Copy(buffer, data, 0, length);
 
 			int tid = (int)target;
 
@@ -52,5 +52,5 @@ namespace Source.Host
 				break;
 			}
 		}
-    }
+	}
 }
