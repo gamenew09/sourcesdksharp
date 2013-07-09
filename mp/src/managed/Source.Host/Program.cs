@@ -27,7 +27,19 @@ namespace Source.Host
 			domains = new AppDomain[3];
 			domainInterfaces = new DomainInterface[3];
 
-			Debug.Msg("[Source.Host.exe] Loading shared Mono\n");
+			Debug.Msg("[Source.Host.exe] Loading shared Mono (Version: {0})\n", GetMonoVersion());
+		}
+
+		static string GetMonoVersion()
+		{
+			Type type = Type.GetType("Mono.Runtime");
+			if (type != null)
+			{                                          
+				MethodInfo displayName = type.GetMethod("GetDisplayName", BindingFlags.NonPublic | BindingFlags.Static); 
+				if(displayName != null)                   
+					return (string)displayName.Invoke(null, null);
+			}
+			return "Unknown";
 		}
 
 		static void MonoMessageHandler(EMonoScriptDomain target, EMonoScriptMsgID msgid, IntPtr buffer, int length)
@@ -45,7 +57,6 @@ namespace Source.Host
 				setup.ApplicationBase = FileSystem.RelativePathToFullPath("mono/lib/" + domainLib[tid], "GAME");
 				domains[tid] = AppDomain.CreateDomain(target.ToString(), null, setup);
 				domainInterfaces[tid] = (DomainInterface)domains[tid].CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(DomainInterface).FullName);
-				Debug.Msg(setup.ApplicationBase+"\n");
 				break;
 			default:
 				Debug.DevMsg("[Source.Host.exe] Recieved Mono message, target: {0}, id: {1}, length: {2}\n", target, msgid, length);

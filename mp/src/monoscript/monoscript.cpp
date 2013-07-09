@@ -65,7 +65,10 @@ void CMonoScript::Initialize()
 		filesystem->RelativePathToFullPath( "mono/lib/monoscript/Source.Host.exe", "GAME", binpath, sizeof(binpath) );
 
 		// Set the mono paths
-		DevMsg( "[CMonoScript] lib: %s etc: %s bin: %s\n", libpath, etcpath, bindir );
+		DevMsg( "[CMonoScript] Setting mono paths\n" );
+		DevMsg( "\tlib: %s\n", libpath);
+		DevMsg( "\tetc: %s\n", etcpath);
+		DevMsg( "\tbin: %s\n", bindir);
 		mono_set_dirs( libpath, etcpath );
 		mono_set_assemblies_path( bindir );
 
