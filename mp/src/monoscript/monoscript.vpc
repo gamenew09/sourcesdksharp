@@ -8,12 +8,13 @@ $Macro SRCDIR		".."
 $Macro OUTBINDIR	"$SRCDIR\..\game\mod_hl2mp\bin"
 
 $Include "$SRCDIR\vpc_scripts\source_dll_base.vpc"
+$Include "monoscript_shared.vpc"
 
 $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\thirdparty\mono"
+		$AdditionalIncludeDirectories	".\;$BASE"
 		$PreprocessorDefinitions			"$BASE;MONOSCRIPT_DLL_EXPORT"
 		$AdditionalOptions  "$BASE /wd4510 /wd4610"
 		// Ignore W4510 and W4610 due to it being a Mono header warning
@@ -34,21 +35,15 @@ $Project "monoscript"
 		$File	"monoscript.cpp"
 	}
 
-	$Folder	"Shared Bindings"
-	{
-		$File	"public\mono_color.cpp"
-		$File	"public\tier0\mono_dbg.cpp"
-	}
-
 	$Folder	"Header Files"
 	{
 		$File	"monoscript.h"
+		$File	"cbase.h"
 	}
 
 	$Folder	"Public Header Files"
 	{
 		$File	"$SRCDIR\public\Color.h"
-		$File	"$SRCDIR\public\monoscript\imonoscript.h"
 		$File	"$SRCDIR\public\tier0\dbg.h"
 		$File	"$SRCDIR\public\tier0\memdbgon.h"
 		$File	"$SRCDIR\public\tier0\icommandline.h"

@@ -29,16 +29,14 @@ extern IFileSystem *filesystem;
 // Keep these enums synced with those found on the managed side
 enum EMonoScriptDomain
 {
-	SCRIPTDOMAIN_NONE = 0,
-	SCRIPTDOMAIN_SERVER = 1,
-	SCRIPTDOMAIN_CLIENT = 2,
-	SCRIPTDOMAIN_MENU = 4,
+	SCRIPTDOMAIN_SERVER = 0,
+	SCRIPTDOMAIN_CLIENT = 1,
+	SCRIPTDOMAIN_MENU = 2,
 };
 
 enum EMonoScriptMsgID
 {
-	SCRIPTMSGID_INVALID = 0,
-	SCRIPTMSGID_INITIALIZE = 1,
+	SCRIPTMSGID_INITIALIZE = 0,
 };
 
 abstract_class IMonoScript

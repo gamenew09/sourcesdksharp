@@ -54,16 +54,15 @@ void CMonoScript::Initialize()
 		DevMsg( "[CMonoScript] Initializing Mono VM\n" );
 
 		// Get the directories we need
-		char libpath[256];
+		char libpath[MAX_PATH];
 		filesystem->RelativePathToFullPath( "mono/lib", "GAMEBIN", libpath, sizeof(libpath) );
-		char etcpath[256];
+		char etcpath[MAX_PATH];
 		filesystem->RelativePathToFullPath( "mono/etc", "GAMEBIN", etcpath, sizeof(etcpath) );
-		char bindir[256];
+		char bindir[MAX_PATH];
 		// Set our assembly path to the top level lib directory - we will change it for other app domains
 		filesystem->RelativePathToFullPath( "mono/lib/monoscript", "GAME", bindir, sizeof(bindir) );
-		char binpath[256];
-		Q_strcpy( binpath, bindir );
-		Q_strcat( binpath, "/Source.Script.exe", 255 );
+		char binpath[MAX_PATH];
+		filesystem->RelativePathToFullPath( "mono/lib/monoscript/Source.Host.exe", "GAME", binpath, sizeof(binpath) );
 
 		// Set the mono paths
 		DevMsg( "[CMonoScript] lib: %s etc: %s bin: %s\n", libpath, etcpath, bindir );

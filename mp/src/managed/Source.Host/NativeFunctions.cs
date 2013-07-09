@@ -5,20 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace Source
+namespace Source.Host
 {
     public enum EMonoScriptDomain
     {
-        ScriptDomainNone = 0,
-        ScriptDomainServer = 1,
-        ScriptDomainClient = 2,
-        ScriptDomainMenu = 4,
+        ScriptDomainServer = 0,
+        ScriptDomainClient = 1,
+        ScriptDomainMenu = 2,
     }
 
     public enum EMonoScriptMsgID
     {
-        ScriptMsgIDInvalid = 0,
-        ScriptMsgIDInitialize = 1,
+        ScriptMsgIDInitialize = 0,
     }
 
     public delegate void MonoMessageDelegate(EMonoScriptDomain target, EMonoScriptMsgID msgid, IntPtr buffer, int length);

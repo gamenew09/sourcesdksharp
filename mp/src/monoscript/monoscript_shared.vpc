@@ -1,0 +1,28 @@
+//-----------------------------------------------------------------------------
+//	MONOSCRIPT_SHARED.VPC
+//
+//	Project Script
+//-----------------------------------------------------------------------------
+
+$Configuration
+{
+	$Compiler
+	{
+		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\thirdparty\mono"
+	}
+}
+
+$Project
+{
+	$Folder	"Shared Bindings"
+	{
+		$File	"$SRCDIR\monoscript\public\mono_color.cpp"
+		$File	"$SRCDIR\monoscript\public\mono_filesystem.cpp"
+		$File	"$SRCDIR\monoscript\public\tier0\mono_dbg.cpp"
+	}
+
+	$Folder	"Public Header Files"
+	{
+		$File	"$SRCDIR\public\monoscript\imonoscript.h"
+	}
+}

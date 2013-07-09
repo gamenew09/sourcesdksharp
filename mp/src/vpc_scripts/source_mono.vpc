@@ -1,3 +1,5 @@
+$Include "$SRCDIR\monoscript\monoscript_shared.vpc"
+
 $Configuration
 {
 	$Compiler

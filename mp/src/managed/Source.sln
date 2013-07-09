@@ -5,9 +5,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devtools", "devtools", "{9D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buildtool", "devtools\buildtool\buildtool.csproj", "{9CBC7789-644A-49F0-9A38-BA7D0E8722AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Source.Script", "Source.Script\Source.Script.csproj", "{7A03356A-EE19-4D5E-BBEC-F2D49351D918}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Source", "Source\Source.csproj", "{1BE988CB-7140-4B86-B4F2-9CBE5FFB4C46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Source.Host", "Source.Host\Source.Host.csproj", "{7A03356A-EE19-4D5E-BBEC-F2D49351D918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

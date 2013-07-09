@@ -4,6 +4,7 @@
 //
 //===========================================================================//
 
+#include "cbase.h"
 #include "Color.h"
 
 #include "monoscript/imonoscript.h"

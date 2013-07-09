@@ -7,8 +7,8 @@
     <ProjectGuid>{7A03356A-EE19-4D5E-BBEC-F2D49351D918}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Source.Script</RootNamespace>
-    <AssemblyName>Source.Script</AssemblyName>
+    <RootNamespace>Source.Host</RootNamespace>
+    <AssemblyName>Source.Host</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProductVersion>12.0.0</ProductVersion>
@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript -d" workingdir="${SolutionDir}" />
+        <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript --prefix=server --prefix=client -d" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript -d" workingdir="${SolutionDir}" />
+        <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript --prefix=server --prefix=client -d" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -55,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NativeFunctions.cs" />
+    <Compile Include="DomainInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

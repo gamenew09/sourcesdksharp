@@ -957,7 +957,8 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	filesystem->RelativePathToFullPath( "bin/monoscript"DLL_EXT_STRING, "MOD", monoscriptpath, sizeof(monoscriptpath) );
 	Sys_LoadInterface( monoscriptpath, MONOSCRIPT_INTERFACE_VERSION, monoscriptModule, (void**)&monoscript );
 	monoscript->Initialize();
-	monoscript->SendMessage( SCRIPTDOMAIN_CLIENT, SCRIPTMSGID_INVALID, NULL, 0 );
+	monoscript->SendMessage( SCRIPTDOMAIN_CLIENT, SCRIPTMSGID_INITIALIZE, NULL, 0 );
+	monoscript->SendMessage( SCRIPTDOMAIN_MENU, SCRIPTMSGID_INITIALIZE, NULL, 0 );
 #endif
 
 	// it's ok if this is NULL. That just means the headtrack.dll wasn't found

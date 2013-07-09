@@ -644,7 +644,7 @@ bool CServerGameDLL::DLLInit( CreateInterfaceFn appSystemFactory,
 	filesystem->RelativePathToFullPath( "bin/monoscript"DLL_EXT_STRING, "MOD", monoscriptpath, sizeof(monoscriptpath) );
 	Sys_LoadInterface( monoscriptpath, MONOSCRIPT_INTERFACE_VERSION, monoscriptModule, (void**)&monoscript );
 	monoscript->Initialize();
-	monoscript->SendMessage( SCRIPTDOMAIN_SERVER, SCRIPTMSGID_INVALID, NULL, 0 );
+	monoscript->SendMessage( SCRIPTDOMAIN_SERVER, SCRIPTMSGID_INITIALIZE, NULL, 0 );
 #endif
 
 	// Yes, both the client and game .dlls will try to Connect, the soundemittersystem.dll will handle this gracefully

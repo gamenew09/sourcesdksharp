@@ -4,6 +4,7 @@
 //
 //===========================================================================//
 
+#include "cbase.h"
 #include "tier0/dbg.h"
 
 #include "monoscript/imonoscript.h"
