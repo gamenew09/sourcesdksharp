@@ -4,14 +4,6 @@
 //	Project Script
 //-----------------------------------------------------------------------------
 
-$Configuration
-{
-	$Compiler
-	{
-		$AdditionalIncludeDirectories		"$BASE;$SRCDIR\thirdparty\mono"
-	}
-}
-
 $Project
 {
 	$Folder	"Shared Bindings"

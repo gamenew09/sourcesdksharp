@@ -14,7 +14,7 @@ $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories	".\;$BASE"
+		$AdditionalIncludeDirectories	".\;$BASE;$SRCDIR\thirdparty\mono"
 		$PreprocessorDefinitions			"$BASE;MONOSCRIPT_DLL_EXPORT"
 		$AdditionalOptions  "$BASE /wd4510 /wd4610"
 		// Ignore W4510 and W4610 due to it being a Mono header warning
