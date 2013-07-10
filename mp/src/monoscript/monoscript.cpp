@@ -1,8 +1,6 @@
 //============== Copyright Source Mono, All rights reserved. ================//
 //
-// Purpose: 
-//
-// $NoKeywords: $
+// Purpose:
 //
 //===========================================================================//
 
@@ -81,7 +79,7 @@ void CMonoScript::Initialize()
 		}
 
 		// Initialize the mono vm, this will create a .NET 4.5 compatible vm
-		g_pMonoDomain = mono_jit_init_version( "sourcemono", "v4.0" );
+		g_pMonoDomain = mono_jit_init_version( "monoscript", "v4.0" );
 
 #ifdef _WIN32
 		if( bDebug )

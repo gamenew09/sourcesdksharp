@@ -1,8 +1,6 @@
 //============== Copyright Source Mono, All rights reserved. ================//
 //
-// Purpose: 
-//
-// $NoKeywords: $
+// Purpose: Means that we can include cbase.h in shared files with no issue
 //
 //===========================================================================//
 

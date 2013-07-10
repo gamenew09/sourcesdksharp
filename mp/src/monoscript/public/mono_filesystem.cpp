@@ -26,3 +26,82 @@ DLL_EXPORT void MONOFUNC(fs_remove_search_path)( char *path, char *pathID )
 {
 	filesystem->RemoveSearchPath( path, pathID );
 }
+
+DLL_EXPORT void *MONOFUNC(fs_file_open)( char *filename, char *options, char *pathid )
+{
+	return filesystem->Open( filename, options, pathid );
+}
+
+DLL_EXPORT void MONOFUNC(fs_file_close)( void *file )
+{
+	if( file != NULL )
+		filesystem->Close( file );
+}
+
+DLL_EXPORT int MONOFUNC(fs_file_read)( void *pOut, int size, void *file )
+{
+	if( file != NULL )
+		return filesystem->Read( pOut, size, file );
+
+	return 0;
+}
+
+DLL_EXPORT void MONOFUNC(fs_file_write)( void *pIn, int size, void *file )
+{
+	if( file != NULL )
+		filesystem->Write( pIn, size, file );
+}
+
+DLL_EXPORT void MONOFUNC(fs_file_seek)( void *file, int pos, FileSystemSeek_t seekType )
+{
+	if( file != NULL )
+		filesystem->Seek( file, pos, seekType );
+}
+
+DLL_EXPORT unsigned int MONOFUNC(fs_file_tell)( void *file )
+{
+	if( file != NULL )
+		return filesystem->Tell( file );
+
+	return 0;
+}
+
+DLL_EXPORT unsigned int MONOFUNC(fs_file_size)( void *file )
+{
+	if( file != NULL )
+		return filesystem->Size( file );
+
+	return 0;
+}
+
+DLL_EXPORT void MONOFUNC(fs_file_flush)( void *file )
+{
+	if( file != NULL )
+		filesystem->Flush( file );
+}
+
+DLL_EXPORT bool MONOFUNC(fs_file_exists)( char *filename, char *pathid )
+{
+	return filesystem->FileExists( filename, pathid );
+}
+
+DLL_EXPORT bool MONOFUNC(fs_file_writable)( char *filename, char *pathid )
+{
+	return filesystem->IsFileWritable( filename, pathid );
+}
+
+DLL_EXPORT void MONOFUNC(fs_file_delete)( char *filename, char *pathid )
+{
+	filesystem->RemoveFile( filename, pathid );
+}
+
+DLL_EXPORT void MONOFUNC(fs_file_set_buffer_size)( void *file, unsigned int size )
+{
+	if( file != NULL )
+		filesystem->SetBufferSize( file, size );
+}
+
+DLL_EXPORT bool MONOFUNC(fs_file_is_ok)( void *file )
+{
+	return filesystem->IsOk( file );
+}

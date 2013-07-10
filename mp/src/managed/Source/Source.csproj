@@ -48,6 +48,9 @@
     <Compile Include="Public\FileSystem.cs" />
     <Compile Include="Public\Mathlib\Vector.cs" />
     <Compile Include="Public\Mathlib\Angle.cs" />
+    <Compile Include="Public\SourceFileStream.cs" />
+    <Compile Include="Public\SourceFileInfo.cs" />
+    <Compile Include="Public\FSNative.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
