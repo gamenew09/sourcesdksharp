@@ -49,7 +49,7 @@ namespace Source
 		{
 			get
 			{
-				if(!fullpath)
+				if(fullpath == "")
 				{
 					StringBuilder buf = new StringBuilder(260); // 260 as in Source that is the max path length
 					FSNative.fs_relative_to_full_path(filename, pathid, buf);

@@ -34,12 +34,6 @@ namespace Source.Host
 			scriptDomains = new ScriptDomain[3];
 
 			Debug.Msg("[Source.Host.exe] Loading shared Mono (Version: {0})\n", GetMonoVersion());
-
-			SourceFileStream sourceStream = new SourceFileStream("testwrite.txt", "w", "GAME");
-			StreamWriter writer = new StreamWriter(sourceStream);
-			writer.WriteLine("HELLO WORLD!");
-			writer.Close();
-			SourceFileInfo info = new SourceFileInfo("testwrite.txt", "GAME");
 		}
 
 		static string GetMonoVersion()
@@ -66,7 +60,7 @@ namespace Source.Host
 			{
 			case EMonoScriptMsgID.ScriptMsgIDInitialize:
 				AppDomainSetup setup = new AppDomainSetup();
-				setup.ApplicationBase = FileSystem.RelativePathToFullPath("mono/lib/" + (target == EMonoScriptDomain.ScriptDomainServer ? "server" : "client"), "GAME");
+				setup.ApplicationBase = new SourceFileInfo("mono/lib/" + (target == EMonoScriptDomain.ScriptDomainServer ? "server" : "client"), "GAME").FullName;
 				AppDomain aDomain = AppDomain.CreateDomain(domainName[tid], null, setup);
 				DomainInterface dInterface = (DomainInterface)aDomain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(DomainInterface).FullName);
 				scriptDomains[tid] = new ScriptDomain() { Domain = aDomain, Interface = dInterface };
