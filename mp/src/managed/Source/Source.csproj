@@ -24,7 +24,6 @@
         <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript --prefix=server --prefix=client -d" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
-    <GenerateDocumentation>true</GenerateDocumentation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -37,7 +36,20 @@
         <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript --prefix=server --prefix=client -d" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Doc|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>doc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="mdoc update -i ${TargetName}.xml -o mdoc ${TargetFile}" workingdir="${TargetDir}" />
+      </CustomCommands>
+    </CustomCommands>
     <GenerateDocumentation>true</GenerateDocumentation>
+    <DocumentationFile>${TargetName}.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
