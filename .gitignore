@@ -92,3 +92,6 @@ monoscript.dylib.dSYM/
 
 # resharper
 _Resharper*/
+
+# sandcastle
+**/documentation/Help/
