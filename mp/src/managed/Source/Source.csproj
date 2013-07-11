@@ -52,6 +52,7 @@
     <Compile Include="Public\SourceFileInfo.cs" />
     <Compile Include="Public\FSNative.cs" />
     <Compile Include="Public\Tier0\CommandLine.cs" />
+    <Compile Include="Public\SourceFileFind.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

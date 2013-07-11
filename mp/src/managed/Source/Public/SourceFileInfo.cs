@@ -19,8 +19,15 @@ namespace Source
 			name = nameparts[nameparts.Length - 1];
 		}
 
-		#region implemented abstract members of FileSystemInfo
+		public bool IsDirectory
+		{
+			get
+			{
+				return FSNative.fs_file_is_directory(filename, pathid);
+			}
+		}
 
+		#region implemented abstract members of FileSystemInfo
 		public override void Delete()
 		{
 			if(Exists && FSNative.fs_file_writable(filename, pathid))

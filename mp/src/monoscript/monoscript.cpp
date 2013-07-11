@@ -48,7 +48,7 @@ void CMonoScript::Initialize()
 			Msg( "[CMonoScript] Enabling Mono debugging\n" );
 		// Get the filesystem interface to find where our files are
 		Sys_LoadInterface( "filesystem_stdio.dll", FILESYSTEM_INTERFACE_VERSION, g_pFileSystemModule, (void **)&filesystem );
-
+		
 		DevMsg( "[CMonoScript] Initializing Mono VM\n" );
 
 		// Get the directories we need
