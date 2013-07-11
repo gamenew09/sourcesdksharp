@@ -19,6 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <GenerateDocumentation>true</GenerateDocumentation>
     <CustomCommands>
       <CustomCommands>
         <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript --prefix=server --prefix=client -d" workingdir="${SolutionDir}" />
@@ -31,20 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <GenerateDocumentation>true</GenerateDocumentation>
     <CustomCommands>
       <CustomCommands>
         <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript --prefix=server --prefix=client -d" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Doc|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\doc</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <GenerateDocumentation>true</GenerateDocumentation>
-    <DocumentationFile>bin\doc\Source.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
