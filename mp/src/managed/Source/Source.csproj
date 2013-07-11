@@ -43,13 +43,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <GenerateDocumentation>true</GenerateDocumentation>
+    <DocumentationFile>doc\Source.xml</DocumentationFile>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="mdoc update -i ${TargetName}.xml -o mdoc ${TargetFile}" workingdir="${TargetDir}" />
+        <Command type="AfterBuild" command="mdoc update -i Source.xml -o en Source.dll&#xA; &amp;&amp; mdoc export-html -o html en&#xA;" workingdir="${TargetDir}" />
       </CustomCommands>
     </CustomCommands>
-    <GenerateDocumentation>true</GenerateDocumentation>
-    <DocumentationFile>${TargetName}.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
