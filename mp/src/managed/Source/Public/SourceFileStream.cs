@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Source
+namespace Source.Public
 {
 	public class SourceFileStream : Stream
 	{

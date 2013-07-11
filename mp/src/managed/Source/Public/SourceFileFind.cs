@@ -1,9 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-using Source.Public;
-
-namespace Source
+namespace Source.Public
 {
 	public class SourceFileFind
 	{
