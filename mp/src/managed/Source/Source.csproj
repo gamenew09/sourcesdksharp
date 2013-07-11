@@ -24,9 +24,9 @@
         <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript --prefix=server --prefix=client -d" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
+    <GenerateDocumentation>true</GenerateDocumentation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -37,6 +37,7 @@
         <Command type="AfterBuild" command="${SolutionDir}/devtools/bin/buildtool.exe --input=${TargetDir} --output=../../game/mod_hl2mp/mono/lib --prefix=monoscript --prefix=server --prefix=client -d" workingdir="${SolutionDir}" />
       </CustomCommands>
     </CustomCommands>
+    <GenerateDocumentation>true</GenerateDocumentation>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
