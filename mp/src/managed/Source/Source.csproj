@@ -47,7 +47,7 @@
     <DocumentationFile>doc\Source.xml</DocumentationFile>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="mdoc update -i Source.xml -o en Source.dll && mdoc export-html -o html en" workingdir="${TargetDir}" />
+        <Command type="AfterBuild" command="mdoc update -i Source.xml -o en Source.dll &amp;&amp; mdoc export-html -o html en" workingdir="${TargetDir}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
