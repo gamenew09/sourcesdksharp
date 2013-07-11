@@ -39,12 +39,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Doc|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>doc</OutputPath>
+    <OutputPath>bin\doc</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <GenerateDocumentation>true</GenerateDocumentation>
-    <DocumentationFile>doc\Source.xml</DocumentationFile>
+    <DocumentationFile>bin\doc\Source.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
