@@ -64,6 +64,7 @@ sound.cache
 server_blacklist.txt
 **/maps/graphs/*
 **/screenshots/*
+**/user_custom/*
 
 # protobufs
 generated_proto/
@@ -97,4 +98,5 @@ _Resharper*
 *.tmp
 
 # sandcastle
+**/*.shfbproj_*
 **/documentation/Help/
