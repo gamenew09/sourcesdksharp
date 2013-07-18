@@ -1,4 +1,8 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 devtools/bin/vpc /define:MONO /hl2mp +everything /mksln everything
+=======
+devtools/bin/vpc /hl2mp +everything /mksln everything
+>>>>>>> upstream/master
 

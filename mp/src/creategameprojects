@@ -1,4 +1,8 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 devtools/bin/vpc /define:MONO /hl2mp +game /mksln games
+=======
+devtools/bin/vpc /hl2mp +game /mksln games
+>>>>>>> upstream/master
 

@@ -91,7 +91,10 @@ monoscript.dylib.dSYM/
 **/managed/packages/
 
 # resharper
-_Resharper*/
+_Resharper*
+
+# shader files
+*.tmp
 
 # sandcastle
 **/documentation/Help/
