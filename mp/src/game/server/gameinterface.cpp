@@ -191,12 +191,12 @@ IReplaySystem *g_pReplay = NULL;
 IServerReplayContext *g_pReplayServerContext = NULL;
 #endif
 
+IGameSystem *SoundEmitterSystem();
+
 #ifdef MONO_ENABLED
 IMonoScript *monoscript = NULL;
 CSysModule **monoscriptModule = NULL;
 #endif
-
-IGameSystem *SoundEmitterSystem();
 
 bool ModelSoundsCacheInit();
 void ModelSoundsCacheShutdown();

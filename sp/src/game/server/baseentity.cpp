@@ -653,7 +653,7 @@ void CBaseEntity::SetModelIndex( int index )
 void CBaseEntity::ClearModelIndexOverrides( void )
 {
 #ifdef TF_DLL
-	for ( int index = 0 ; index < MAX_MODEL_INDEX_OVERRIDES ; index++ )
+	for ( int index = 0 ; index < MAX_VISION_MODES ; index++ )
 	{
 		m_nModelIndexOverrides.Set( index, 0 );
 	}
@@ -663,7 +663,7 @@ void CBaseEntity::ClearModelIndexOverrides( void )
 void CBaseEntity::SetModelIndexOverride( int index, int nValue )
 {
 #ifdef TF_DLL
-	if ( ( index >= MODEL_INDEX_OVERRIDE_DEFAULT ) && ( index < MAX_MODEL_INDEX_OVERRIDES ) )
+	if ( ( index >= VISION_MODE_NONE ) && ( index < MAX_VISION_MODES ) )
 	{
 		if ( nValue != m_nModelIndexOverrides[index] )
 		{
@@ -1950,7 +1950,7 @@ BEGIN_DATADESC_NO_BASE( CBaseEntity )
 	// DEFINE_FIELD( m_fDataObjectTypes, FIELD_INTEGER ),
 
 #ifdef TF_DLL
-	DEFINE_ARRAY( m_nModelIndexOverrides, FIELD_INTEGER, MAX_MODEL_INDEX_OVERRIDES ),
+	DEFINE_ARRAY( m_nModelIndexOverrides, FIELD_INTEGER, MAX_VISION_MODES ),
 #endif
 
 END_DATADESC()
@@ -4522,6 +4522,17 @@ void CBaseEntity::Teleport( const Vector *newPosition, const QAngle *newAngles, 
 	for (i = 0; i < teleportList.Count(); i++)
 	{
 		teleportList[i].pEntity->CollisionRulesChanged();
+	}
+
+	if ( IsPlayer() )
+	{
+		// Tell the client being teleported
+		IGameEvent *event = gameeventmanager->CreateEvent( "base_player_teleported" );
+		if ( event )
+		{
+			event->SetInt( "entindex", entindex() );
+			gameeventmanager->FireEventClientSide( event );
+		}
 	}
 
 	Assert( g_TeleportStack[index] == this );
@@ -7302,6 +7313,30 @@ void CC_Ent_Create( const CCommand& args )
 {
 	MDLCACHE_CRITICAL_SECTION();
 
+	CBasePlayer *pPlayer = UTIL_GetCommandClient();
+	if (!pPlayer)
+	{
+		return;
+	}
+
+	// Don't allow regular users to create point_servercommand entities for the same reason as blocking ent_fire
+	if ( !Q_stricmp( args[1], "point_servercommand" ) )
+	{
+		if ( engine->IsDedicatedServer() )
+		{
+			// We allow people with disabled autokick to do it, because they already have rcon.
+			if ( pPlayer->IsAutoKickDisabled() == false )
+				return;
+		}
+		else if ( gpGlobals->maxClients > 1 )
+		{
+			// On listen servers with more than 1 player, only allow the host to create point_servercommand.
+			CBasePlayer *pHostPlayer = UTIL_GetListenServerHost();
+			if ( pPlayer != pHostPlayer )
+				return;
+		}
+	}
+
 	bool allowPrecache = CBaseEntity::IsPrecacheAllowed();
 	CBaseEntity::SetAllowPrecache( true );
 
@@ -7322,7 +7357,6 @@ void CC_Ent_Create( const CCommand& args )
 		DispatchSpawn(entity);
 
 		// Now attempt to drop into the world
-		CBasePlayer* pPlayer = UTIL_GetCommandClient();
 		trace_t tr;
 		Vector forward;
 		pPlayer->EyeVectors( &forward );

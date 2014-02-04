@@ -116,11 +116,12 @@
 #include "rtime.h"
 #include "tf_hud_disconnect_prompt.h"
 #include "../engine/audio/public/sound.h"
+#include "tf_shared_content_manager.h"
 #endif
 #include "clientsteamcontext.h"
 #include "renamed_recvtable_compat.h"
 #include "mouthinfo.h"
-#include "headtrack/isourcevirtualreality.h"
+#include "sourcevr/isourcevirtualreality.h"
 #include "client_virtualreality.h"
 #include "mumble.h"
 
@@ -147,7 +148,6 @@
 #endif
 
 extern vgui::IInputInternal *g_InputInternal;
-const char *COM_GetModDirectory(); // return the mod dir (rather than the complete -game param, which can be a path)
 
 //=============================================================================
 // HPE_BEGIN
@@ -341,6 +341,11 @@ void DispatchHudText( const char *pszName );
 static ConVar s_CV_ShowParticleCounts("showparticlecounts", "0", 0, "Display number of particles drawn per frame");
 static ConVar s_cl_team("cl_team", "default", FCVAR_USERINFO|FCVAR_ARCHIVE, "Default team when joining a game");
 static ConVar s_cl_class("cl_class", "default", FCVAR_USERINFO|FCVAR_ARCHIVE, "Default class when joining a game");
+
+#ifdef HL1MP_CLIENT_DLL
+static ConVar s_cl_load_hl1_content("cl_load_hl1_content", "0", FCVAR_ARCHIVE, "Mount the content from Half-Life: Source if possible");
+#endif
+
 
 // Physics system
 bool g_bLevelInitialized;
@@ -962,7 +967,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	monoscript->SendMessage( SCRIPTDOMAIN_MENU, SCRIPTMSGID_INITIALIZE, NULL, 0 );
 #endif
 
-	// it's ok if this is NULL. That just means the headtrack.dll wasn't found
+	// it's ok if this is NULL. That just means the sourcevr.dll wasn't found
 	g_pSourceVR = (ISourceVirtualReality *)appSystemFactory(SOURCE_VIRTUAL_REALITY_INTERFACE_VERSION, NULL);
 
 	factorylist_t factories;
@@ -996,17 +1001,6 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 
 	g_pcv_ThreadMode = g_pCVar->FindVar( "host_thread_mode" );
 
-	// If we are in VR mode do some initial setup work
-	if( UseVR() )
-	{
-		int nViewportWidth, nViewportHeight;
-
-		g_pSourceVR->GetViewportBounds( ISourceVirtualReality::VREye_Left, NULL, NULL, &nViewportWidth, &nViewportHeight );
-		vgui::surface()->SetFullscreenViewport( 0, 0, nViewportWidth, nViewportHeight );
-
-		vgui::ivgui()->SetVRMode( true );
-	}
-
 	if (!Initializer::InitializeAllObjects())
 		return false;
 
@@ -1038,6 +1032,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	
 	#if defined( TF_CLIENT_DLL )
 	IGameSystem::Add( CustomTextureToolCacheGameSystem() );
+	IGameSystem::Add( TFSharedContentManager() );
 	#endif
 
 #if defined( TF_CLIENT_DLL )
@@ -1109,6 +1104,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 #ifndef _X360
 	HookHapticMessages(); // Always hook the messages
 #endif
+
 	return true;
 }
 
@@ -1159,29 +1155,23 @@ void CHLClient::PostInit()
 	g_pSixenseInput->PostInit();
 #endif
 
-	// If we are in VR mode execute headtrack.cfg in PostInit so all the convars will
-	// already be set up
-	if( UseVR() )
+	g_ClientVirtualReality.StartupComplete();
+
+#ifdef HL1MP_CLIENT_DLL
+	if ( s_cl_load_hl1_content.GetBool() && steamapicontext && steamapicontext->SteamApps() )
 	{
-		// general all-game stuff
-		engine->ExecuteClientCmd( "exec headtrack\\headtrack.cfg" );
+		char szPath[ MAX_PATH*2 ];
+		int ccFolder= steamapicontext->SteamApps()->GetAppInstallDir( 280, szPath, sizeof(szPath) );
+		if ( ccFolder > 0 )
+		{
+			V_AppendSlash( szPath, sizeof(szPath) );
+			V_strncat( szPath, "hl1", sizeof( szPath ) );
 
-		// game specific VR config
-		CUtlString sCmd;
-		sCmd.Format( "exec headtrack_%s.cfg", COM_GetModDirectory() );
-		engine->ExecuteClientCmd( sCmd.Get() );
-
-		engine->ExecuteClientCmd( "vr_start_tracking" );
-
-		vgui::surface()->SetSoftwareCursor( true );
-#if defined(POSIX)
-		ConVarRef m_rawinput( "m_rawinput" );
-		m_rawinput.SetValue( 1 );
-
-		ConVarRef mat_vsync( "mat_vsync" );
-		mat_vsync.SetValue( 0 );
-#endif
+			g_pFullFileSystem->AddSearchPath( szPath, "HL1" );
+			g_pFullFileSystem->AddSearchPath( szPath, "GAME" );
+		}
 	}
+#endif
 }
 
 //-----------------------------------------------------------------------------

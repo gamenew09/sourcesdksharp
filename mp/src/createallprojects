@@ -1,8 +1,5 @@
 #!/bin/bash
 
-<<<<<<< HEAD
+pushd `dirname $0`
 devtools/bin/vpc /define:MONO /hl2mp +everything /mksln everything
-=======
-devtools/bin/vpc /hl2mp +everything /mksln everything
->>>>>>> upstream/master
-
+popd

@@ -18,18 +18,20 @@ ipch
 *.opensdf
 *.idb
 *.vcxproj
-*.sln
 *.vcxproj.filters
-*.vpc_crc
-*.vpc.sentinel
+*.sln
+[Dd]ebug*/
+[Rr]elease*/
 
 # OSX/Linux build products
+*.DS_Store
 *.mak
 *.mak.vpc_crc
 *.xcodeproj/
 obj*/
 !devtools/*.mak
 !utils/smdlexp/smdlexp.mak
+*_osx32*
 
 # Specific Source build products
 client.pdb
@@ -51,7 +53,11 @@ client.dylib.dSYM/
 server.dylib
 server.dylib.dSYM/
 
-**/game/bin/
+*.vpc.sentinel
+*.vpc_crc
+**/generated_proto/**
+**/src/utils/sapi51/**
+**/game/**/bin/**
 **/Debug/
 **/Release/
 
@@ -65,9 +71,6 @@ server_blacklist.txt
 **/maps/graphs/*
 **/screenshots/*
 **/user_custom/*
-
-# protobufs
-generated_proto/
 
 # mono integration
 monoscript.dll
@@ -100,3 +103,6 @@ _Resharper*
 # sandcastle
 **/*.shfbproj_*
 **/documentation/Help/
+
+# shader files
+*.tmp
