@@ -25,6 +25,7 @@ $Configuration
 	$Linker
 	{
 		$AdditionalDependencies				"$BASE odbc32.lib odbccp32.lib"
+		$GCC_ExtraLinkerFlags				"-lrt"
 	}
 }
 
@@ -58,7 +59,7 @@ $Project "monoscript"
 		$DynamicFile	"$SRCDIR\lib\public\$PLATFORM\tier2$_STATICLIB_EXT"   [$LINUX]
 		$DynamicFile	"$SRCDIR\lib\$PLATFORM\mathlib$_STATICLIB_EXT"        [$OSXALL]
 		$DynamicFile	"$SRCDIR\lib\$PLATFORM\tier2$_STATICLIB_EXT"          [$OSXALL]
-		$File "$SRCDIR\lib\$PLATFORM\mono.lib"                                [$WINDOWS]
-		$File "$SRCDIR\lib\$PLATFORM\libmono-2.0.a"                           [$POSIX]
+		$File "$LIBCOMMON\mono.lib"                                           [$WINDOWS]
+		$File "$LIBCOMMON\libmono-2.0.a"                                      [$POSIX]
 	}
 }

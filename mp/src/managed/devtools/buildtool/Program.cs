@@ -22,10 +22,10 @@ namespace buildtool
 
 			if(!new DirectoryInfo(targetPath).Exists)
 				Directory.CreateDirectory(targetPath);
+			
+			var moduleRef = new ModuleReference(entryPointPrefix + ".dll");
 
 			entryPointPrefix += "_";
-
-			var internalRef = new ModuleReference("__Internal");
 
 			// We need to do this as it's looking for the assembly when use an enum constant
 			// So lets tell it where the assemblies are coming from so it can load them
@@ -55,7 +55,7 @@ namespace buildtool
 
 				md = ModuleDefinition.ReadModule(file.FullName, readParams);
 
-				md.ModuleReferences.Add(internalRef);
+				md.ModuleReferences.Add(moduleRef);
 				Console.WriteLine("Type count: {0}", md.Types.Count);
 				// Process P/Invokes
 				foreach (var mdType in md.Types)
@@ -72,7 +72,7 @@ namespace buildtool
 								method.PInvokeInfo.EntryPoint = entryPointPrefix + method.PInvokeInfo.EntryPoint;
 								Console.WriteLine("To: {0}", method.PInvokeInfo.EntryPoint);
 
-								method.PInvokeInfo.Module = internalRef;
+								method.PInvokeInfo.Module = moduleRef;
 							}
 						}
 					}

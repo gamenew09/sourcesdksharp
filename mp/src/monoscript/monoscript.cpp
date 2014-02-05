@@ -60,7 +60,7 @@ void CMonoScript::Initialize()
 		// Set our assembly path to the top level lib directory - we will change it for other app domains
 		filesystem->RelativePathToFullPath( "mono/lib/monoscript", "GAME", bindir, sizeof(bindir) );
 		char binpath[MAX_PATH];
-		filesystem->RelativePathToFullPath( "mono/lib/monoscript/Source.Host.exe", "GAME", binpath, sizeof(binpath) );
+		filesystem->RelativePathToFullPath( "mono/lib/monoscript/source.host.exe", "GAME", binpath, sizeof(binpath) );
 
 		// Set the mono paths
 		DevMsg( "[CMonoScript] Setting mono paths\n" );
