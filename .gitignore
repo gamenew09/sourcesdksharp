@@ -32,6 +32,7 @@ obj*/
 !devtools/*.mak
 !utils/smdlexp/smdlexp.mak
 *_osx32*
+*.project
 
 # Specific Source build products
 client.pdb
@@ -68,6 +69,8 @@ voice_ban.dt
 modelsounds.cache
 sound.cache
 server_blacklist.txt
+glshaders.cfg
+videoconfig_linux.cfg
 **/maps/graphs/*
 **/screenshots/*
 **/user_custom/*
@@ -83,6 +86,8 @@ monoscript.dylib.dSYM/
 
 **/mod_hl2mp/mono/lib/
 **/mod_hl2mp/bin/mono/
+
+!**/mod_hl2mp/mono/**/*.config
 
 !**/managed/*.vcxproj
 !**/managed/*.vcxproj.filters
