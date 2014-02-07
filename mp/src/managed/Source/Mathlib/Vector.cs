@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Source.Public.Mathlib
+namespace Source.Mathlib
 {
 	/// <summary>
 	/// Provides access to the Source engine's vector class.

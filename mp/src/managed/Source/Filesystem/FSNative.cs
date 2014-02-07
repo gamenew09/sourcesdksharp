@@ -3,7 +3,7 @@ using System.Text;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Source.Public
+namespace Source.Filesystem
 {
 	internal static class FSNative
 	{

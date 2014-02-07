@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Source.Public.Tier0
+namespace Source.Tier0
 {
 	public static class CommandLine
 	{

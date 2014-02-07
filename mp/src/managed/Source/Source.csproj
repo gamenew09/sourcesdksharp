@@ -45,19 +45,19 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public\Color.cs" />
-    <Compile Include="Public\Tier0\Debug.cs" />
-    <Compile Include="Public\FileSystem.cs" />
-    <Compile Include="Public\Mathlib\Vector.cs" />
-    <Compile Include="Public\Mathlib\Angle.cs" />
-    <Compile Include="Public\SourceFileStream.cs" />
-    <Compile Include="Public\SourceFileInfo.cs" />
-    <Compile Include="Public\FSNative.cs" />
-    <Compile Include="Public\Tier0\CommandLine.cs" />
-    <Compile Include="Public\SourceFileFind.cs" />
+    <Compile Include="Mathlib\Angle.cs" />
+    <Compile Include="Mathlib\Vector.cs" />
+    <Compile Include="Tier0\CommandLine.cs" />
+    <Compile Include="Tier0\Debug.cs" />
+    <Compile Include="Filesystem\Filesystem.cs" />
+    <Compile Include="Filesystem\FSNative.cs" />
+    <Compile Include="Filesystem\SourceFileFind.cs" />
+    <Compile Include="Filesystem\SourceFileInfo.cs" />
+    <Compile Include="Filesystem\SourceFileStream.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Public\" />
-    <Folder Include="Public\Mathlib\" />
+    <Folder Include="Filesystem\" />
   </ItemGroup>
 </Project>

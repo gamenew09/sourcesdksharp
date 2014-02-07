@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Source.Public.Tier0
+using Source.Public;
+
+namespace Source.Tier0
 {
 	/// <summary>
 	/// Provides access to the Source engine's Tier0 logging functions.

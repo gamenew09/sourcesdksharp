@@ -2,9 +2,9 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace Source.Public
+namespace Source.Filesystem
 {
-	static public class FileSystem
+	static public class Filesystem
 	{
 		public static void AddSearchPath(string path, string pathid)
 		{

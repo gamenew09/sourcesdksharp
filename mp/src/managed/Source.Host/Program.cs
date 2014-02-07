@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.IO;
 
-using Source.Public.Tier0;
-using Source.Public;
+using Source.Tier0;
+using Source.Filesystem;
 
 namespace Source.Host
 {

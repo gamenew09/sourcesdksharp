@@ -33,6 +33,8 @@ obj*/
 !utils/smdlexp/smdlexp.mak
 *_osx32*
 *.project
+*.workspace
+*.codelite/
 
 # Specific Source build products
 client.pdb

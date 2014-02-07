@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace Source.Public
+namespace Source.Filesystem
 {
 	public class SourceFileInfo : FileSystemInfo
 	{
