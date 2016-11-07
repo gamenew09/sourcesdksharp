@@ -1,9 +1,0 @@
-$Include "$SRCDIR\monoscript\monoscript_shared.vpc"
-
-$Configuration
-{
-	$Compiler
-	{
-		$PreprocessorDefinitions	"$BASE;MONO_ENABLED"
-	}
-}
