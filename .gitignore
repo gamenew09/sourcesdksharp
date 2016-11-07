@@ -18,19 +18,16 @@ ipch
 *.opensdf
 *.idb
 *.vcxproj
-*.vcxproj.filters
 *.sln
-[Dd]ebug*/
-[Rr]elease*/
 
 # OSX/Linux build products
-*.DS_Store
 *.mak
 *.mak.vpc_crc
 *.xcodeproj/
 obj*/
 !devtools/*.mak
 !utils/smdlexp/smdlexp.mak
+
 *_osx32*
 *.project
 *.workspace
